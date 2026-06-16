@@ -1,39 +1,39 @@
 body {
-    font-family: Arial;
-    background: a#0b1220;
-    color: white;
+  font-family: Arial;
+  background: #0b1220;
+  color: white;
 }
 
 .center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 .box {
-    background: #111827;
-    padding: 40px;
-    border-radius: 10px;
-    text-align: center;
+  background: #111827;
+  padding: 40px;
+  border-radius: 10px;
+  text-align: center;
 }
 
 input {
-    display: block;
-    margin: 10px auto;
-    padding: 10px;
-    width: 200px;
+  display: block;
+  margin: 10px auto;
+  padding: 10px;
+  width: 220px;
 }
 
 button {
-    padding: 10px 20px;
-    background: #2563eb;
-    border: none;
-    color: white;
-    cursor: pointer;
+  padding: 10px 20px;
+  background: #2563eb;
+  border: none;
+  color: white;
+  cursor: pointer;
 }
 
 .dashboard {
-    text-align: center;
-    margin-top: 100px;
+  text-align: center;
+  margin-top: 100px;
 }
