@@ -7,41 +7,71 @@
 
 <body>
 
-<div class="topbar">
-    <h2>Welcome {{ user }}</h2>
-    <a href="/logout">Logout</a>
-</div>
+<div class="layout">
 
-<div class="grid">
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <h2>HarithAI</h2>
 
-    <div class="card">
-        <h3>Total Users</h3>
-        <h1>{{ total_users }}</h1>
+        <a href="#">📊 Overview</a>
+        <a href="#">📁 Files</a>
+        <a href="#">👥 Users</a>
+        <a href="#">⚙️ Settings</a>
+
+        <div class="bottom">
+            <a href="/logout">Logout</a>
+        </div>
     </div>
 
-    <div class="card">
-        <h3>Uploaded Files</h3>
-        <h1>{{ files|length }}</h1>
+    <!-- MAIN -->
+    <div class="main">
+
+        <div class="topbar">
+            <h1>Welcome, {{ user }}</h1>
+            <p>AI Production Dashboard</p>
+        </div>
+
+        <!-- CARDS -->
+        <div class="cards">
+
+            <div class="card">
+                <h3>Total Users</h3>
+                <h1>{{ total_users }}</h1>
+            </div>
+
+            <div class="card">
+                <h3>Uploaded Files</h3>
+                <h1>{{ files|length }}</h1>
+            </div>
+
+            <div class="card highlight">
+                <h3>Status</h3>
+                <h1>Active</h1>
+            </div>
+
+        </div>
+
+        <!-- UPLOAD -->
+        <div class="panel">
+            <h2>Upload Data</h2>
+
+            <form action="/upload" method="POST" enctype="multipart/form-data">
+                <input type="file" name="file" required>
+                <button>Upload</button>
+            </form>
+        </div>
+
+        <!-- FILES -->
+        <div class="panel">
+            <h2>Recent Files</h2>
+
+            {% for f in files %}
+                <div class="file">📄 {{ f }}</div>
+            {% endfor %}
+        </div>
+
     </div>
 
-</div>
-
-<!-- UPLOAD -->
-<div class="upload-box">
-    <h3>Upload Data File</h3>
-
-    <form action="/upload" method="POST" enctype="multipart/form-data">
-        <input type="file" name="file" required>
-        <button>Upload</button>
-    </form>
-</div>
-
-<!-- FILE LIST -->
-<div class="file-box">
-    <h3>Recent Files</h3>
-    {% for f in files %}
-        <p>📄 {{ f }}</p>
-    {% endfor %}
 </div>
 
 </body>
