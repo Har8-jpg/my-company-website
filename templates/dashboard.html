@@ -1,18 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-
 <body>
 
 <div class="dashboard">
-    <h1>Welcome to AI Dashboard</h1>
-
-    <p>You are logged in successfully.</p>
-
-    <a href="/logout">Logout</a>
+  <h1>Welcome {{ user }}</h1>
+  <p>Secure dashboard system active.</p>
+  <a href="/logout">Logout</a>
 </div>
 
 </body>
