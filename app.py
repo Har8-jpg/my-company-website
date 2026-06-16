@@ -3,12 +3,13 @@ import sqlite3
 import os
 from flask_bcrypt import Bcrypt
 from model import predict_demand
+os.makedirs("uploads", exist_ok=True)
 
 app = Flask(__name__)
 app.secret_key = "admin123"
 bcrypt = Bcrypt(app)
 
-DB = "users.db"
+DB = "/tmp/users.db"
 
 def init_db():
     conn = sqlite3.connect(DB)
@@ -77,24 +78,27 @@ def dashboard():
     if 'user' not in session:
         return redirect('/login')
 
+    # SAFE uploads folder
+    upload_folder = "uploads"
+    os.makedirs(upload_folder, exist_ok=True)
+
+    # SAFE file list
+    files = os.listdir(upload_folder)
+
+    # SAFE DB read
     conn = sqlite3.connect(DB)
     c = conn.cursor()
     c.execute("SELECT COUNT(*) FROM users")
     total_users = c.fetchone()[0]
     conn.close()
 
-    files = os.listdir(UPLOAD_FOLDER)
-
-    # AI prediction (NEW)
-    prediction = predict_demand()
-
     return render_template(
         "dashboard.html",
         user=session['user'],
         total_users=total_users,
-        files=files,
-        prediction=prediction
+        files=files
     )
+
 @app.route('/predict')
 def predict():
     value = predict_demand()
