@@ -1,15 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Dashboard</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
 
-<div class="dashboard">
-  <h1>Welcome {{ user }}</h1>
-  <p>Secure dashboard system active.</p>
-  <a href="/logout">Logout</a>
+<div class="topbar">
+    <h2>Welcome {{ user }}</h2>
+    <a href="/logout">Logout</a>
+</div>
+
+<div class="grid">
+
+    <div class="card">
+        <h3>Total Users</h3>
+        <h1>{{ total_users }}</h1>
+    </div>
+
+    <div class="card">
+        <h3>Uploaded Files</h3>
+        <h1>{{ files|length }}</h1>
+    </div>
+
+</div>
+
+<!-- UPLOAD -->
+<div class="upload-box">
+    <h3>Upload Data File</h3>
+
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" required>
+        <button>Upload</button>
+    </form>
+</div>
+
+<!-- FILE LIST -->
+<div class="file-box">
+    <h3>Recent Files</h3>
+    {% for f in files %}
+        <p>📄 {{ f }}</p>
+    {% endfor %}
 </div>
 
 </body>
